@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,13 +31,13 @@ public class ContactActivity extends AppCompatActivity {
     private Adapter kAdapter;
     private ListView lvKontak;
     private EditText etCariNama;
-    private Button btnTambahKontak,btnEditKontak, btnHapusKontak, btnCariKontak, btnTeleponKontak, btnChangeFragment;
+    private ImageButton btnEditKontak, btnHapusKontak, btnTambahKontak, btnTeleponKontak;
+    private Button btnCariKontak;
     private ContactModel pointerKontak = null;
     private SQLiteDatabase DB;
     private SQLiteOpenHelper Opendb;
-    DescriptionFragment fragmentA = new DescriptionFragment();
-    DescriptionFragment2 fragmentB = new DescriptionFragment2();
     private boolean changeFragmentCheck = false;
+    private boolean isDbStopped = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,6 @@ public class ContactActivity extends AppCompatActivity {
         btnHapusKontak = findViewById(R.id.btnHapusKontak);
         btnCariKontak = findViewById(R.id.btnCariKontak);
         btnTeleponKontak = findViewById(R.id.btnTeleponKontak);
-        btnChangeFragment = findViewById(R.id.btnChangeFragment);
 
         //ListView
         lvKontak = findViewById(R.id.lvKontak);
@@ -70,7 +70,6 @@ public class ContactActivity extends AppCompatActivity {
         btnHapusKontak.setOnClickListener(hapusKontak);
         btnCariKontak.setOnClickListener(cariKontak);
         btnTeleponKontak.setOnClickListener(teleponKontak);
-        btnChangeFragment.setOnClickListener(changeFragment);
 
     }
 
@@ -87,6 +86,9 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void declareDB(){
+        if (!isDbStopped) { // if DB is already run
+            return;
+        }
         Opendb = new SQLiteOpenHelper(this, "db.sql", null, 1) {
             @Override
             public void onCreate(SQLiteDatabase db) {}
@@ -96,6 +98,7 @@ public class ContactActivity extends AppCompatActivity {
         };
         DB = Opendb.getWritableDatabase();
         DB.execSQL("create table if not exists contact(nama TEXT, noHp TEXT)");
+        isDbStopped = false;
     }
 
     @Override
@@ -103,9 +106,11 @@ public class ContactActivity extends AppCompatActivity {
         DB.close();
         Opendb.close();
         super.onStop();
+        isDbStopped = true;
     }
 
     private final View.OnClickListener tambahKontak = v -> {
+        if (isDbStopped) declareDB();
         AlertDialog.Builder aD = new AlertDialog.Builder(this);
         aD.setTitle("Tambah Kontak");
         v = LayoutInflater.from(this).inflate(R.layout.dialog_add, null);
@@ -129,6 +134,7 @@ public class ContactActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener editKontak = v -> {
+        if (isDbStopped) declareDB();
         if(pointerKontak == null){
             Toast.makeText(this, "Pilih kontak yang ingin di edit", Toast.LENGTH_LONG).show();
         }
@@ -160,6 +166,7 @@ public class ContactActivity extends AppCompatActivity {
 
     private final View.OnClickListener hapusKontak = v -> {
 
+        if (isDbStopped) declareDB();
         if(pointerKontak == null){
             Toast.makeText(this, "Pilih kontak yang ingin di hapus", Toast.LENGTH_LONG).show();
         }
@@ -187,6 +194,7 @@ public class ContactActivity extends AppCompatActivity {
 
     private final View.OnClickListener cariKontak = v -> {
 
+        if (isDbStopped) declareDB();
         if(etCariNama.getText().toString().trim().length() == 0 ){
             loadKontak();
         }else{
@@ -197,12 +205,13 @@ public class ContactActivity extends AppCompatActivity {
 
     private final View.OnClickListener teleponKontak = v -> {
 
+        if (isDbStopped) declareDB();
         Uri number = Uri.parse("tel:"+pointerKontak.getNoHp());
         Intent callNumber = new Intent(Intent.ACTION_DIAL, number);
 
         startActivity(callNumber);
     };
-
+/*
     private final View.OnClickListener changeFragment = v -> {
         if(changeFragmentCheck){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_test, fragmentA).addToBackStack(null).commit();
@@ -212,8 +221,10 @@ public class ContactActivity extends AppCompatActivity {
         }
         changeFragmentCheck = !changeFragmentCheck;
     };
-
+*/
     private void loadKontak() {
+
+        if (isDbStopped) declareDB();
         kAdapter.clear();
         Cursor cur = DB.rawQuery("SELECT * FROM contact", null);
         if (cur.getCount() > 0) {
@@ -227,6 +238,8 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     public void simpanKontak(String nama, String noHp){
+
+        if (isDbStopped) declareDB();
         ContentValues dataku = new ContentValues();
 
         dataku.put("nama", nama);
@@ -237,6 +250,8 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     public boolean ambilKontakBerdasarkanNama(String nama){
+
+        if (isDbStopped) declareDB();
         @SuppressLint("Recycle") Cursor cur = DB.rawQuery("select * from contact where nama='" + nama + "'", null);
         if(cur.getCount() > 0){
             return true;
@@ -246,6 +261,8 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     public void ambilKontakNama(String nama){
+
+        if (isDbStopped) declareDB();
         Cursor cur = DB.rawQuery("select * from contact where nama like '%" + nama + "%'", null);
         int i=0;
         if(cur.getCount() > 0){
@@ -267,11 +284,15 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void hapusKontak(String nama){
+
+        if (isDbStopped) declareDB();
         DB.delete("contact", "nama='" + nama + "'", null);
         loadKontak();
     }
 
     private void updateKontak(String nama, String noHp){
+
+        if (isDbStopped) declareDB();
         ContentValues dataku = new ContentValues();
 
         dataku.put("noHp", noHp);

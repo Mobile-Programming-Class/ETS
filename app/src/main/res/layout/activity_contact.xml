@@ -1,144 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".contact.ContactActivity"
+android:fillViewport="true">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".contact.ContactActivity"
-    android:orientation="vertical">
+    android:padding="12dp"
+    android:layout_marginTop="12dp">
 
-    <fragment
-        android:id="@+id/fragment_test"
-        class="com.allam.ets.contact.DescriptionFragment"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"></fragment>
+        android:layout_alignParentStart="true"
+        android:text="@string/nama"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:id="@+id/etSearchLabel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/etSearchLabel"
+        android:text="@string/titikDua"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:id="@+id/titikDua"/>
+
+    <EditText
+        android:id="@+id/etCariNama"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/titikDua"
+        android:inputType="text"
+        android:autofillHints="Input Nama Barang"
+        tools:ignore="LabelFor"/>
+
 
     <Button
-        android:id="@+id/btnChangeFragment"
+        android:id="@+id/btnCariKontak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_below="@id/etCariNama"
         android:background="@drawable/btn_bg"
-        android:text="Pindah fragment"
+        android:text="@string/cariKntk"
         android:textColor="@android:color/white"
+        tools:ignore="ButtonStyle"/>
+
+    <ImageButton
+        android:id="@+id/btnTambahKontak"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/btnCariKontak"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/ic_add"
+        android:background="@drawable/btn_bg"
+        tools:ignore="ButtonStyle" />
+    <ImageButton
+        android:id="@+id/btnEditKontak"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_below="@id/btnCariKontak"
+        android:layout_toEndOf="@id/btnTambahKontak"
+        android:src="@drawable/ic_edit"
+        android:background="@drawable/btn_bg"
+        tools:ignore="ButtonStyle"/>
+    <ImageButton
+        android:id="@+id/btnHapusKontak"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_below="@id/btnCariKontak"
+        android:layout_toRightOf="@id/btnEditKontak"
+        android:src="@drawable/ic_delete"
+        android:background="@drawable/btn_bg_warning"
         tools:ignore="ButtonStyle">
-    </Button>
-
-    <TableLayout
+    </ImageButton>
+    <ImageButton
+        android:id="@+id/btnTeleponKontak"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="2"
-        android:padding="8dp">
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nama"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/titikDua"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/etCariNama"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:inputType="text"
-                android:autofillHints="Input Nama Barang"
-                tools:ignore="LabelFor" />
-
-        </TableRow>
-        <TableRow>
-            <Button
-                android:id="@+id/btnCariKontak"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/btn_bg"
-                android:text="@string/cariKntk"
-                android:textColor="@android:color/white"
-                tools:ignore="ButtonStyle" />
-        </TableRow>
-
-
-    </TableLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
-        <Button
-            android:id="@+id/btnTambahKontak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bg"
-            android:text="@string/tambah"
-            android:textColor="@android:color/white"
-            tools:ignore="ButtonStyle">
-        </Button>
-        <Button
-            android:id="@+id/btnEditKontak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bg"
-            android:text="@string/edit"
-            android:textColor="@android:color/white"
-            tools:ignore="ButtonStyle">
-        </Button>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
-        <Button
-            android:id="@+id/btnHapusKontak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bg"
-            android:text="@string/hps"
-            android:textColor="@android:color/white"
-            tools:ignore="ButtonStyle">
-        </Button>
-        <Button
-            android:id="@+id/btnTeleponKontak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bg"
-            android:text="@string/tlpnKntk"
-            android:textColor="@android:color/white"
-            tools:ignore="ButtonStyle" />
-    </LinearLayout>
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/btnCariKontak"
+        android:layout_toRightOf="@id/btnHapusKontak"
+        android:src="@drawable/ic_dial"
+        android:background="@drawable/btn_bg_dial"
+        tools:ignore="ButtonStyle" />
 
     <ListView
+        android:id="@+id/lvKontak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lvKontak"
-        android:layout_marginTop="8dp"/>
+        android:layout_below="@id/btnTeleponKontak"
+        android:layout_marginTop="8dp" />
 
-</LinearLayout>
+</RelativeLayout>
+
+
+
+</ScrollView>
