@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.allam.ets.api.ApiActivity;
+import com.allam.ets.api.json.JsonActivity;
 import com.allam.ets.contact.ContactActivity;
 import com.allam.ets.gps.GpsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnKontak, btnKeluar, btnGps, btnApi;
+    private Button btnKontak, btnKeluar, btnGps, btnApi, btnJsonApi;
 
 
     @Override
@@ -32,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
         btnKontak = findViewById(R.id.btnKontak);
         btnGps = findViewById(R.id.btnGps);
         btnApi = findViewById(R.id.btnApi);
+        btnJsonApi = findViewById(R.id.btnJsonApi);
         btnKeluar = findViewById(R.id.btnKeluar);
 
         btnKontak.setOnClickListener(RedirectToKontakPage);
         btnGps.setOnClickListener(RedirectToGpsPage);
         btnApi.setOnClickListener(RedirectToApiPage);
+        btnJsonApi.setOnClickListener(RedirectToApiJsonPage);
         btnKeluar.setOnClickListener(keluar);
 
     }
@@ -54,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
     private final View.OnClickListener RedirectToApiPage = v -> {
         startActivity(new Intent(MainActivity.this, ApiActivity.class));
+    };
+
+    private final View.OnClickListener RedirectToApiJsonPage = v -> {
+        startActivity(new Intent(MainActivity.this, JsonActivity.class));
     };
 
     private final View.OnClickListener keluar = v -> {

@@ -3,6 +3,7 @@
     <string name="ContApp">Contact App</string>
     <string name="gpsApp">GPS APP</string>
     <string name="ApiApp">Api APP</string>
+    <string name="ApiJsonApp">Api JSON APP</string>
     <string name="close">Close</string>
 
     <string name="hint1">name</string>

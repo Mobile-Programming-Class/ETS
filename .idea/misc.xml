@@ -10,6 +10,7 @@
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/drawable/btn_bg_warning.xml" value="0.2765625" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2786458333333333" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/activity_api.xml" value="0.25625" />
+        <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/activity_api_json.xml" value="0.25625" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/activity_contact.xml" value="0.5" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/activity_gps.xml" value="0.33" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/activity_main.xml" value="0.19021739130434784" />
@@ -19,6 +20,7 @@
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/fragment_description.xml" value="0.19021739130434784" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/fragment_description2.xml" value="0.2625" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/fragment_maps.xml" value="0.19021739130434784" />
+        <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/list_item_api_json.xml" value="0.25625" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/layout/testing_layout.xml" value="0.25" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/menu/menu.xml" value="1.4" />
         <entry key="..\:/developing/project/mobile/ETS/app/src/main/res/xml/kontak.xml" value="0.25625" />
