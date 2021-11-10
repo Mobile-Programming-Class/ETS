@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.allam.ets.api.ApiActivity;
 import com.allam.ets.contact.ContactActivity;
 import com.allam.ets.gps.GpsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnKontak,btnKeluar,btnGps;
+    private Button btnKontak, btnKeluar, btnGps, btnApi;
 
 
     @Override
@@ -29,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private void setupItemView(){
         //Button
         btnKontak = findViewById(R.id.btnKontak);
-        btnKeluar = findViewById(R.id.btnKeluar);
         btnGps = findViewById(R.id.btnGps);
+        btnApi = findViewById(R.id.btnApi);
+        btnKeluar = findViewById(R.id.btnKeluar);
 
         btnKontak.setOnClickListener(RedirectToKontakPage);
         btnGps.setOnClickListener(RedirectToGpsPage);
+        btnApi.setOnClickListener(RedirectToApiPage);
         btnKeluar.setOnClickListener(keluar);
 
     }
@@ -47,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     private final View.OnClickListener RedirectToGpsPage = v -> {
         startActivity(new Intent(MainActivity.this, GpsActivity.class));
+    };
+
+    private final View.OnClickListener RedirectToApiPage = v -> {
+        startActivity(new Intent(MainActivity.this, ApiActivity.class));
     };
 
     private final View.OnClickListener keluar = v -> {

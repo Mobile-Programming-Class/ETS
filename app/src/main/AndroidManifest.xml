@@ -23,6 +23,7 @@
 
         <activity android:name=".gps.GpsActivity" />
         <activity android:name=".contact.ContactActivity" />
+        <activity android:name=".api.ApiActivity" />
 
         <activity
             android:name=".MainActivity"

@@ -2,9 +2,11 @@
     <string name="app_name">ETS</string>
     <string name="ContApp">Contact App</string>
     <string name="gpsApp">GPS APP</string>
+    <string name="ApiApp">Api APP</string>
     <string name="close">Close</string>
 
     <string name="hint1">name</string>
+    <string name="contact">Contacts</string>
     <string name="nameCus">Name Customer </string>
     <string name="labelNamaBarang">Nama Barang </string>
     <string name="labelJumlahBarang">Jumlah Barang </string>
